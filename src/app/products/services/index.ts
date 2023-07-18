@@ -1,5 +1,5 @@
 export async function getAllProduct() {
-  const response = await fetch("http://localhost:3000/api/products");
+  const response = await fetch(`${process.env.URL_STRING}api/products`);
   if (!response.ok) {
     throw new Error("Failed to fetch all products");
   }

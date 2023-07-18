@@ -45,7 +45,7 @@ export default function FormUI() {
 
   async function onSubmit(formValues: z.infer<typeof formSchema>) {
     // console.log("form values", values);
-    return await db.insert(products).values(formValues);
+    // return await db.insert(products).values(formValues);
   }
 
   return (
