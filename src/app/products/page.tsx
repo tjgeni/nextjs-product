@@ -5,7 +5,7 @@ import { Products } from "./schema";
 import { getAllProduct } from "./services";
 
 export default async function Products() {
-  const allProducts: Products[] = await getAllProduct();
+  // const allProducts: Products[] = await getAllProduct();
 
   return (
     <div>
@@ -13,7 +13,7 @@ export default async function Products() {
         <p className="p-5 underline">👈 Back to Homepage</p>
       </Link>
 
-      <div className="max-w-screen-lg m-auto">
+      {/*  <div className="max-w-screen-lg m-auto">
         <div className="m-4">
           <Button asChild>
             <Link href={"/products/add"}>Add Product</Link>
@@ -30,7 +30,7 @@ export default async function Products() {
             />
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
