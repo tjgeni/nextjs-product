@@ -14,8 +14,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { db } from "@/db/drizzle-client";
-import { products } from "@/db/schema";
 
 const formSchema = z.object({
   category: z.string().min(4, {
