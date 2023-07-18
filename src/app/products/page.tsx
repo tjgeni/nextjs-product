@@ -1,11 +1,11 @@
-import { products } from "../../db/schema";
 import Link from "next/link";
 import CardUI from "@/ui-components/card";
 import { Button } from "@/components/ui/button";
-import { db } from "@/db/drizzle-client";
+import { Products } from "./schema";
+import { getAllProduct } from "./services";
 
 export default async function Products() {
-  const allProducts = await db.select().from(products);
+  const allProducts: Products[] = await getAllProduct();
 
   return (
     <div>
