@@ -3,7 +3,7 @@ import { getBaseUrl } from "@/lib/getBaseURL";
 
 export async function insertProduct(data: Products) {
   try {
-    const response = await fetch(`${getBaseUrl()}/api/products/post`, {
+    const response = await fetch(`/api/products/post`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
