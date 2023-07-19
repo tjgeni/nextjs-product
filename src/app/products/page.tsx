@@ -8,7 +8,7 @@ import { getAllProduct } from "./services/getAllProduct";
 import useSWR from "swr";
 import { fetcher } from "@/lib/fetcher";
 
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
 export default function Products() {
   // const allProducts: Products[] = await getAllProduct();
