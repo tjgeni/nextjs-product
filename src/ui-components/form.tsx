@@ -14,10 +14,12 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { insertProduct } from "@/app/products/services/addProduct";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
-  category: z.string().min(4, {
-    message: "Category minimal 4 Character",
+  category: z.string().min(2, {
+    message: "Category minimal 2 Character",
   }),
   product_name: z.string().min(10, {
     message: "Product name minimal 10 Character",
@@ -31,6 +33,7 @@ const formSchema = z.object({
 });
 
 export default function FormUI() {
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -42,8 +45,11 @@ export default function FormUI() {
   });
 
   async function onSubmit(formValues: z.infer<typeof formSchema>) {
-    // console.log("form values", values);
-    // return await db.insert(products).values(formValues);
+    const response = await insertProduct(formValues);
+    if (response?.ok) {
+      router.push("/products");
+      router.refresh();
+    }
   }
 
   return (
