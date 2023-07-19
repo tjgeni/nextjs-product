@@ -4,8 +4,8 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
-    const json = await request.json();
-    const product = await db.insert(products).values(json);
+    const payload = await request.json();
+    const product = await db.insert(products).values(payload).returning();
 
     return new NextResponse(JSON.stringify(product), {
       status: 201,

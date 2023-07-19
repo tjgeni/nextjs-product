@@ -1,9 +1,9 @@
 export type Products = {
   id?: number;
-  created_at?: Date | null;
-  updated_at?: Date | null;
-  category: string | null;
-  product_name: string | null;
-  product_spec: string | null;
-  price: string | null;
+  created_at?: Date | undefined;
+  updated_at?: Date | undefined;
+  category: string | undefined;
+  product_name: string | undefined;
+  product_spec: string | undefined;
+  price: string | undefined;
 };

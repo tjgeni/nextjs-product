@@ -4,7 +4,6 @@ import Link from "next/link";
 import CardUI from "@/ui-components/card";
 import { Button } from "@/components/ui/button";
 import { Products } from "./schema";
-import { getAllProduct } from "./services/getAllProduct";
 import useSWR from "swr";
 import { fetcher } from "@/lib/fetcher";
 
@@ -12,18 +11,22 @@ import { fetcher } from "@/lib/fetcher";
 
 export default function Products() {
   // const allProducts: Products[] = await getAllProduct();
-  const { data, isLoading } = useSWR("/api/products/get-all", fetcher);
+  const { data, isLoading } = useSWR("/api/products/get-all", fetcher, {
+    refreshInterval: 1000,
+  });
 
   if (isLoading) return <div>loading...</div>;
 
   return (
     <div>
-      <Link href={"/"}>
-        <p className="p-5 underline">👈 Back to Homepage</p>
-      </Link>
+      <div className="flex justify-end">
+        <Link href={"/"}>
+          <p className="p-5 underline ">👈 Back to Homepage</p>
+        </Link>
+      </div>
 
       <div className="max-w-screen-lg m-auto">
-        <div className="m-4">
+        <div className="mx-10 my-6">
           <Button asChild>
             <Link href={"/products/add"}>Add Product</Link>
           </Button>

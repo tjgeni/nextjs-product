@@ -1,11 +1,10 @@
 import { Products } from "@/app/products/schema";
 
-export async function insertProduct(data: Products) {
+export async function deleteProduct(productId: string) {
   try {
-    const response = await fetch(`/api/products/post`, {
-      method: "POST",
+    const response = await fetch(`/api/products/delete/${productId}`, {
+      method: "DELETE",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
     });
 
     return response;
