@@ -31,7 +31,7 @@ export default function ProductDetail({
   params: { productId: string };
 }) {
   const { data, isLoading } = useSWR(
-    `${getBaseUrl()}/api/products/get-one/${params.productId}`,
+    `/api/products/get-one/${params.productId}`,
     fetcher
   );
   if (isLoading) return <div>loading...</div>;
