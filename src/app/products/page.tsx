@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 
 import Link from "next/link";
 import CardUI from "@/ui-components/card";
@@ -6,16 +6,20 @@ import { Button } from "@/components/ui/button";
 import { Products } from "./schema";
 import useSWR from "swr";
 import { fetcher } from "@/lib/fetcher";
+import { getAllProduct } from "./services/getAllProduct";
 
-// export const dynamic = "force-dynamic";
+export const dynamic = "force-dynamic";
 
-export default function Products() {
-  // const allProducts: Products[] = await getAllProduct();
-  const { data, isLoading } = useSWR("/api/products/get-all", fetcher, {
+export default async function Products() {
+  const data: Products[] = await getAllProduct();
+  /*   const { data, isLoading } = useSWR("/api/products/get-all", fetcher, {
     refreshInterval: 1000,
   });
+  
 
-  if (isLoading) return <div>loading...</div>;
+  console.log(data);
+
+  if (isLoading) return <div>loading...</div>; */
 
   const totalProduct = data.length;
 
