@@ -121,7 +121,9 @@ export default function FormAdd() {
           <div className="flex gap-4 justify-end">
             <Button type="submit">Submit</Button>
             <Button asChild>
-              <Link href={"/products"}>Cancel</Link>
+              <Link href={"/products"} prefetch={false}>
+                Cancel
+              </Link>
             </Button>
           </div>
         </form>

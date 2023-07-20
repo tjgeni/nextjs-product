@@ -28,7 +28,7 @@ export default async function Products() {
   return (
     <div>
       <div className="flex justify-end">
-        <Link href={"/"}>
+        <Link href={"/"} prefetch={false}>
           <p className="p-5 underline ">👈 Back to Homepage</p>
         </Link>
       </div>
@@ -36,7 +36,9 @@ export default async function Products() {
       <div className="max-w-screen-lg m-auto">
         <div className="mx-6 my-6 flex justify-between">
           <Button asChild>
-            <Link href={"/products/add"}>Add Product</Link>
+            <Link href={"/products/add"} prefetch={false}>
+              Add Product
+            </Link>
           </Button>
           <div>
             <p>
@@ -46,7 +48,7 @@ export default async function Products() {
         </div>
         <div className="flex justify-center items-center gap-4 flex-wrap">
           {data?.map((item: Products) => (
-            <Link href={`/products/${item.id}`} key={item.id}>
+            <Link href={`/products/${item.id}`} key={item.id} prefetch={false}>
               <CardUI
                 product_name={item.product_name}
                 category={item.category}

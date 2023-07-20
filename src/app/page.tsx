@@ -7,7 +7,7 @@ export default function Home() {
       <div>
         <Card>
           <CardHeader>
-            <Link href={"/products"}>
+            <Link href={"/products"} prefetch={false}>
               <CardTitle>Lihat Produk</CardTitle>
             </Link>
           </CardHeader>
