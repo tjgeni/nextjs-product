@@ -17,6 +17,8 @@ export default function Products() {
 
   if (isLoading) return <div>loading...</div>;
 
+  const totalProduct = data.length;
+
   return (
     <div>
       <div className="flex justify-end">
@@ -26,10 +28,15 @@ export default function Products() {
       </div>
 
       <div className="max-w-screen-lg m-auto">
-        <div className="mx-10 my-6">
+        <div className="mx-6 my-6 flex justify-between">
           <Button asChild>
             <Link href={"/products/add"}>Add Product</Link>
           </Button>
+          <div>
+            <p>
+              Total Product: <span className="text-xl">{totalProduct}</span>
+            </p>
+          </div>
         </div>
         <div className="flex justify-center items-center gap-4 flex-wrap">
           {data?.map((item: Products) => (

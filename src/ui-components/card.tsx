@@ -18,7 +18,7 @@ export default function CardUI({ id, product_name, category }: Products) {
         <CardTitle>{product_name}</CardTitle>
       </CardHeader>
       <CardContent>
-        <h2 className="text-slate-500">Category: {category}</h2>
+        <h2 className="text-gray-400">Category: {category}</h2>
         <div className="flex justify-center mt-3">
           <Button variant="ghost" onClick={() => handleRoute(id)}>
             Edit
