@@ -8,7 +8,7 @@ export default function Home() {
         <Card>
           <CardHeader>
             <Link href={"/products"} prefetch={false}>
-              <CardTitle>Lihat Produk</CardTitle>
+              <CardTitle>Cek Produk</CardTitle>
             </Link>
           </CardHeader>
         </Card>
