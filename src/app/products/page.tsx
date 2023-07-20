@@ -8,7 +8,8 @@ import useSWR from "swr";
 import { fetcher } from "@/lib/fetcher";
 import { getAllProduct } from "./services/getAllProduct";
 
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
+export const revalidate = 2;
 
 export default async function Products() {
   const data: Products[] = await getAllProduct();
