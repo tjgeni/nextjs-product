@@ -1,6 +1,7 @@
 import { db } from "@/db/drizzle-client";
 import { products } from "@/db/schema";
 import { eq } from "drizzle-orm";
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 
 export async function PATCH(
@@ -14,5 +15,6 @@ export async function PATCH(
     .set(payload)
     .where(eq(products.id, productId as unknown as number));
 
+  revalidatePath("/products");
   return NextResponse.json(updatedData, { status: 200 });
 }
