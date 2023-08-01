@@ -66,8 +66,6 @@ export function FormUpdate({ productId, data }: { productId: string, data: Await
         title: "Info",
         description: "Product Berhasil diupdate!",
       });
-      route.push("/products");
-      route.refresh();
     })
   }
 
