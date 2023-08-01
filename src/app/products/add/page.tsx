@@ -14,7 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { insertProduct } from "@/app/products/services/addProduct";
+import { insertProduct } from "@/app/products/services/mutations/addProduct";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
 import { useTransition } from "react";
@@ -44,17 +44,15 @@ export default function FormAdd() {
   });
 
   async function onSubmit(formValues: z.infer<typeof formSchema>) {
-    const response = await insertProduct(formValues);
-    if (response?.ok) {
+    startTransition(async () => {
+      await insertProduct(formValues);
       toast({
         title: "Info",
         description: "Product Berhasil ditambah!",
       });
-      startTransition(() => {
-        route.push("/products");
-        route.refresh();
-      })
-    }
+      route.push("/products");
+      route.refresh();
+    })
   }
 
   return (

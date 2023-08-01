@@ -16,7 +16,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Products } from "../schema";
-import { updateProduct } from "../services/updateProduct";
+import { updateProduct } from "../services/mutations/updateProduct";
 import { useToast } from "@/components/ui/use-toast";
 import {
   Dialog,
@@ -28,7 +28,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { useState, useTransition } from "react";
-import { deleteProduct } from "../services/deleteProduct";
+import { deleteProduct } from "../services/mutations/deleteProduct";
 import type { getOneProduct } from "../services/getOneProduct";
 
 
@@ -48,7 +48,7 @@ const formSchema = z.object({
   }),
 });
 
-export function FormUpdate({productId, data}: {productId: string, data: Awaited<ReturnType<typeof getOneProduct>>}) {
+export function FormUpdate({ productId, data }: { productId: string, data: Awaited<ReturnType<typeof getOneProduct>> }) {
   const [_isPending, startTransition] = useTransition()
   const route = useRouter();
   const { toast } = useToast();
@@ -60,32 +60,28 @@ export function FormUpdate({productId, data}: {productId: string, data: Awaited<
   });
 
   async function onSubmit(formValues: z.infer<typeof formSchema>) {
-    const response = await updateProduct(productId, formValues);
-    if (response?.ok) {
+    startTransition(async () => {
+      await updateProduct(productId, formValues);
       toast({
         title: "Info",
         description: "Product Berhasil diupdate!",
       });
-      startTransition(() => {
-        route.push("/products");
-        route.refresh();
-      })
-    }
+      route.push("/products");
+      route.refresh();
+    })
   }
 
   async function handleDelete() {
-    const response = await deleteProduct(productId);
-    if (response?.ok) {
+    startTransition(async () => {
+      await deleteProduct(productId);
       setOpenDialog(false);
       toast({
         title: "Info",
         description: "Product Berhasil dihapus!",
       });
-      startTransition(() => {
-        route.push("/products");
-        route.refresh();
-      })
-    }
+      route.push("/products");
+      route.refresh();
+    })
   }
 
   return (

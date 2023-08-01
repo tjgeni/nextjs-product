@@ -1,20 +1,17 @@
+"use server"
+import { Products } from "../../schema";
 import { db } from "@/db/drizzle-client";
 import { products } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
-import { NextResponse } from "next/server";
 
-export async function PATCH(
-  request: Request,
-  { params }: { params: { productId: string } }
-) {
-  const productId = params.productId;
-  const payload = await request.json();
+// TODO: All these DB editing functions do not have zod validation yet. Should be added.
+export async function updateProduct(productId: string, data: Products) {
   const updatedData = await db
     .update(products)
-    .set(payload)
+    .set(data)
     .where(eq(products.id, productId as unknown as number));
 
   revalidatePath("/products");
-  return NextResponse.json(updatedData, { status: 200 });
+  return updatedData
 }
