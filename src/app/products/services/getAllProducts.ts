@@ -1,8 +1,7 @@
 import { db } from "@/db/drizzle-client";
 import { products } from "@/db/schema";
-import { NextResponse } from "next/server";
 
-export async function GET() {
+export async function getAllProducts() {
   const allProduct = await db.select().from(products);
-  return NextResponse.json(allProduct);
+  return allProduct
 }

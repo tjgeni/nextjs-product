@@ -4,7 +4,7 @@ import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
 export async function DELETE(
-  request: Request,
+  _request: Request,
   { params }: { params: { productId: string } }
 ) {
   const productId = params.productId;

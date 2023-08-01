@@ -16,8 +16,8 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { insertProduct } from "@/app/products/services/addProduct";
 import { useRouter } from "next/navigation";
-import { usePathname } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
+import { useTransition } from "react";
 
 const formSchema = z.object({
   category: z.string().min(2, {
@@ -35,6 +35,7 @@ const formSchema = z.object({
 });
 
 export default function FormAdd() {
+  const [_isPending, startTransition] = useTransition()
   const route = useRouter();
   const { toast } = useToast();
 
@@ -49,14 +50,16 @@ export default function FormAdd() {
         title: "Info",
         description: "Product Berhasil ditambah!",
       });
-      route.push("/products");
-      route.refresh();
+      startTransition(() => {
+        route.push("/products");
+        route.refresh();
+      })
     }
   }
 
   return (
     <div className="max-w-screen-sm m-auto">
-      <h2 className="text-2xl my-4">
+      <h2 className="my-4 text-2xl">
         <b>Product</b>
       </h2>
       <Form {...form}>
@@ -118,7 +121,7 @@ export default function FormAdd() {
             )}
           />
 
-          <div className="flex gap-4 justify-end">
+          <div className="flex justify-end gap-4">
             <Button type="submit">Submit</Button>
             <Button asChild>
               <Link href={"/products"} prefetch={false}>

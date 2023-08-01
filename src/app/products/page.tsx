@@ -1,28 +1,13 @@
-// "use client";
-
 import Link from "next/link";
 import CardUI from "@/ui-components/card";
 import { Button } from "@/components/ui/button";
 import { Products } from "./schema";
-import useSWR from "swr";
-import { fetcher } from "@/lib/fetcher";
-import { getAllProduct } from "./services/getAllProduct";
+import { getAllProducts } from "./services/getAllProducts";
 
-export const fetchCache = "force-no-store";
-export const revalidate = 0; // seconds
 export const dynamic = "force-dynamic";
 
 export default async function Products() {
-  const data: Products[] = await getAllProduct();
-  /*   const { data, isLoading } = useSWR("/api/products/get-all", fetcher, {
-    refreshInterval: 1000,
-  });
-  
-
-  console.log(data);
-
-  if (isLoading) return <div>loading...</div>; */
-
+  const data = await getAllProducts();
   const totalProduct = data.length;
 
   return (
@@ -34,7 +19,7 @@ export default async function Products() {
       </div>
 
       <div className="max-w-screen-lg m-auto">
-        <div className="mx-6 my-6 flex justify-between">
+        <div className="flex justify-between mx-6 my-6">
           <Button asChild>
             <Link href={"/products/add"} prefetch={false}>
               Add Product
@@ -46,8 +31,8 @@ export default async function Products() {
             </p>
           </div>
         </div>
-        <div className="flex justify-center items-center gap-4 flex-wrap">
-          {data?.map((item: Products) => (
+        <div className="flex flex-wrap items-center justify-center gap-4">
+          {data.map((item) => (
             <Link href={`/products/${item.id}`} key={item.id} prefetch={false}>
               <CardUI
                 product_name={item.product_name}
