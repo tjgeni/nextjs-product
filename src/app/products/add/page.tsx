@@ -50,8 +50,6 @@ export default function FormAdd() {
         title: "Info",
         description: "Product Berhasil ditambah!",
       });
-      route.push("/products");
-      route.refresh();
     })
   }
 
