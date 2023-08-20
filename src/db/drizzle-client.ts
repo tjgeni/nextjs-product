@@ -2,5 +2,5 @@ import postgres from "postgres";
 import { drizzle } from "drizzle-orm/postgres-js";
 
 const connectionString = process.env.CONNECTION_STRING;
-const client = postgres(connectionString!);
+const client = postgres(connectionString!, { max: 1 });
 export const db = drizzle(client);
