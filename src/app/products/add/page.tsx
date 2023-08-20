@@ -35,7 +35,7 @@ const formSchema = z.object({
 });
 
 export default function FormAdd() {
-  const [_isPending, startTransition] = useTransition()
+  const [_isPending, startTransition] = useTransition();
   const route = useRouter();
   const { toast } = useToast();
 
@@ -48,85 +48,87 @@ export default function FormAdd() {
       await insertProduct(formValues);
       toast({
         title: "Info",
-        description: "Product Berhasil ditambah!",
+        description: "Product Succesfully added!",
       });
-    })
+    });
   }
 
   return (
-    <div className="max-w-screen-sm m-auto">
+    <div className="flex flex-col h-screen justify-center items-center">
       <h2 className="my-4 text-2xl">
-        <b>Product</b>
+        <b>Add Product</b>
       </h2>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-          <FormField
-            defaultValue=""
-            control={form.control}
-            name="category"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Category</FormLabel>
-                <FormControl>
-                  <Input placeholder="misalkan category" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="product_name"
-            defaultValue=""
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Product Name</FormLabel>
-                <FormControl>
-                  <Input placeholder="misalkan product name" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="product_spec"
-            defaultValue=""
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Product Spec</FormLabel>
-                <FormControl>
-                  <Input placeholder="misalkan product spec" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="price"
-            defaultValue=""
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Price</FormLabel>
-                <FormControl>
-                  <Input placeholder="misalkan price" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+      <div className="max-w-lg w-full shadow-xl p-10 rounded-xl">
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <FormField
+              defaultValue=""
+              control={form.control}
+              name="category"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Category</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Book" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="product_name"
+              defaultValue=""
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Product Name</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Harry Potter" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="product_spec"
+              defaultValue=""
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Product Spec</FormLabel>
+                  <FormControl>
+                    <Input placeholder="500hl" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="price"
+              defaultValue=""
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Price</FormLabel>
+                  <FormControl>
+                    <Input placeholder="235.000" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-          <div className="flex justify-end gap-4">
-            <Button type="submit">Submit</Button>
-            <Button asChild>
-              <Link href={"/products"} prefetch={false}>
-                Cancel
-              </Link>
-            </Button>
-          </div>
-        </form>
-      </Form>
+            <div className="flex justify-end gap-4">
+              <Button type="submit">Submit</Button>
+              <Button asChild variant="outline">
+                <Link href={"/products"} prefetch={false}>
+                  Cancel
+                </Link>
+              </Button>
+            </div>
+          </form>
+        </Form>
+      </div>
     </div>
   );
 }

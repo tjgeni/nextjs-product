@@ -3,15 +3,11 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center p-24">
-      <div>
-        <Card>
-          <CardHeader>
-            <Link href={"/products"} prefetch={false}>
-              <CardTitle>Lihat Produk</CardTitle>
-            </Link>
-          </CardHeader>
-        </Card>
+    <main className="min-h-screen">
+      <div className="flex justify-center items-center min-h-screen">
+        <Link href={"/products"} prefetch={false}>
+          <h1 className="font-semibold">See your Products</h1>
+        </Link>
       </div>
     </main>
   );

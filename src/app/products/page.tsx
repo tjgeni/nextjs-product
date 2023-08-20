@@ -12,24 +12,25 @@ export default async function Products() {
 
   return (
     <div>
-      <div className="flex justify-end">
+      <div className="flex">
         <Link href={"/"} prefetch={false}>
-          <p className="p-5 underline ">👈 Back to Homepage</p>
+          <h2 className="p-5 hover:underline">_/ Dashboard</h2>
         </Link>
       </div>
 
-      <div className="max-w-screen-lg m-auto">
+      <div className="max-w-4xl m-auto">
         <div className="flex justify-between mx-6 my-6">
+          <div>
+            <p>
+              Total Product:{" "}
+              <span className="text-xl font-bold">{totalProduct}</span>
+            </p>
+          </div>
           <Button asChild>
             <Link href={"/products/add"} prefetch={false}>
               Add Product
             </Link>
           </Button>
-          <div>
-            <p>
-              Total Product: <span className="text-xl">{totalProduct}</span>
-            </p>
-          </div>
         </div>
         <div className="flex flex-wrap items-center justify-center gap-4">
           {data.map((item) => (
